@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 140 30% 97%;
+    --foreground: 150 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 25% 12%;
+
+    --primary: 152 58% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 145 30% 92%;
+    --secondary-foreground: 150 25% 18%;
+
+    --muted: 140 20% 94%;
+    --muted-foreground: 150 10% 45%;
+
+    --accent: 160 50% 90%;
+    --accent-foreground: 152 58% 30%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 145 20% 88%;
+    --input: 145 20% 88%;
+    --ring: 152 58% 48%;
+
+    --radius: 0.75rem;
+
+    --gradient-start: 142 40% 92%;
+    --gradient-end: 160 30% 97%;
+    --glow-color: 152 58% 48%;
+    --glow-soft: 0 0 20px hsl(152 58% 48% / 0.25);
+    --glow-strong: 0 0 30px hsl(152 58% 48% / 0.4);
+    --shadow-card: 0 4px 24px -4px hsl(150 20% 20% / 0.08);
+    --shadow-card-hover: 0 12px 32px -8px hsl(152 58% 48% / 0.18);
+
+    --map-bg: 200 20% 96%;
+    --map-grid: 200 15% 88%;
+    --map-glow: 200 80% 55%;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 152 58% 48%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 145 30% 95%;
+    --sidebar-accent-foreground: 150 25% 18%;
+    --sidebar-border: 145 20% 90%;
+    --sidebar-ring: 152 58% 48%;
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 210 20% 92%;
+    --card: 220 18% 12%;
+    --card-foreground: 210 20% 92%;
+    --popover: 220 18% 12%;
+    --popover-foreground: 210 20% 92%;
+    --primary: 152 58% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 16%;
+    --secondary-foreground: 210 20% 85%;
+    --muted: 220 14% 16%;
+    --muted-foreground: 215 12% 50%;
+    --accent: 200 40% 18%;
+    --accent-foreground: 200 80% 70%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 18%;
+    --input: 220 14% 18%;
+    --ring: 152 58% 48%;
+
+    --gradient-start: 220 20% 7%;
+    --gradient-end: 230 18% 10%;
+    --glow-soft: 0 0 20px hsl(152 58% 48% / 0.2);
+    --glow-strong: 0 0 30px hsl(200 80% 55% / 0.35);
+    --shadow-card: 0 4px 24px -4px hsl(220 40% 4% / 0.4);
+    --shadow-card-hover: 0 12px 32px -8px hsl(200 80% 55% / 0.15);
+
+    --map-bg: 220 25% 10%;
+    --map-grid: 210 30% 18%;
+    --map-glow: 200 80% 55%;
+
+    --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 152 58% 48%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 220 15% 16%;
+    --sidebar-accent-foreground: 210 20% 80%;
+    --sidebar-border: 220 14% 18%;
+    --sidebar-ring: 152 58% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .gradient-bg {
+    background: linear-gradient(160deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+  }
+  .glow-soft {
+    box-shadow: var(--glow-soft);
+  }
+  .glow-strong {
+    box-shadow: var(--glow-strong);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+  .text-glow {
+    text-shadow: 0 0 12px hsl(152 58% 48% / 0.3);
+  }
+  .input-glow:focus {
+    box-shadow: 0 0 0 3px hsl(152 58% 48% / 0.15), var(--glow-soft);
+  }
+  .nav-underline {
+    @apply relative;
+  }
+  .nav-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 scale-x-0 origin-right transition-transform duration-300;
+    background: hsl(var(--primary));
+  }
+  .nav-underline:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+  .ripple {
+    position: relative;
+    overflow: hidden;
+  }
+  .ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, hsl(0 0% 100% / 0.3) 10%, transparent 70%);
+    transform: scale(0);
+    opacity: 0;
+    border-radius: 50%;
+  }
+  .ripple:active::after {
+    transform: scale(4);
+    opacity: 1;
+    transition: transform 0.4s, opacity 0.3s;
+  }
+
+  /* Map neon utilities */
+  .map-bg {
+    background: hsl(var(--map-bg));
+  }
+  .map-grid-line {
+    border-color: hsl(var(--map-grid) / 0.4);
+  }
+  .map-marker-glow {
+    box-shadow: 0 0 16px hsl(var(--map-glow) / 0.5), 0 0 32px hsl(var(--map-glow) / 0.2);
+  }
+  .map-marker-ping {
+    background: hsl(var(--map-glow) / 0.3);
+  }
+  .map-marker-bg {
+    background: hsl(var(--map-glow));
+  }
+}
